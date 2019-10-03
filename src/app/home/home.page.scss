@@ -1,0 +1,47 @@
+// Home page header style
+ion-header {
+
+   // Header cart button style
+   .btn-cart {
+      background: none;
+
+      .ic-cart {
+         font-size: 1.7em;
+      }
+   }
+
+   // Cart button badge style
+   .badge {
+      margin-bottom: 10px;
+      padding: 0;
+      --color: #3880ff;
+      --background: none;
+   }
+}
+
+// Home page content style
+ion-content {
+
+   // Product cart style
+   .product-card {
+
+      // Product card title style
+      .card-title {
+         font-size: 16px;
+         text-overflow: ellipsis;
+         overflow: hidden;
+         white-space: nowrap;
+      }
+
+      // Product card add button style
+      .btn-add-to-cart {
+         text-transform: capitalize;
+      }
+
+      // button style
+      ion-button {
+         width: 98%;
+      }
+   }
+
+}

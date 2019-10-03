@@ -1,0 +1,58 @@
+<!-- Home page header -->
+<ion-header>
+   <ion-toolbar>
+      <ion-buttons end>
+         <ion-title>
+            Book Store
+         </ion-title>
+         <button ion-button clear padding class="btn-cart" [routerLink]="['/cart']">
+            <ion-icon name="cart" class="ic-cart" color="primary"></ion-icon>
+            <ion-badge start mode="ios" class="badge">{{cartLength}}</ion-badge>
+         </button>
+      </ion-buttons>
+   </ion-toolbar>
+</ion-header>
+
+<!-- Home page content -->
+<ion-content>
+   <ion-row>
+      <ion-col size="6" *ngFor="let p of products" no-padding>
+         <!-- Product card -->
+         <ion-card class="product-card">
+            <img [src]="getImageUrl(p.image)" />
+            <ion-card-header>
+               <ion-card-title class="card-title">{{p.name}}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+               Rs. {{p.price}}
+               <ion-row *ngIf="p.count>0">
+                  <ion-col no-padding align-self-center>
+                     <ion-button class="btn-minus" (click)="decrementCartItem(p)" color="light">-
+                     </ion-button>
+                  </ion-col>
+
+                  <ion-col no-padding text-center>
+                     <ion-button class="btn-count" expand="full">{{p.count}}
+                     </ion-button>
+                  </ion-col>
+
+                  <ion-col no-padding text-right>
+                     <ion-button class="btn-plus" (click)="incrementCartItem(p)" color="light">+
+                     </ion-button>
+                  </ion-col>
+               </ion-row>
+
+               <ion-row *ngIf="p.count==0">
+                  <ion-col no-padding>
+                     <!-- Add to cart button -->
+                     <ion-button class="btn-add-to-cart" (click)="addToCart(p)" expand="block" color="light">
+                        Add
+                        to
+                        cart</ion-button>
+                  </ion-col>
+               </ion-row>
+            </ion-card-content>
+         </ion-card>
+      </ion-col>
+   </ion-row>
+</ion-content>

@@ -1,0 +1,43 @@
+[{
+      "id": 1,
+      "name": "Learning Ionic",
+      "price": 100,
+      "image": "ionic.jpg",
+      "count": 0
+   },
+   {
+      "id": 2,
+      "name": "Learning Angular",
+      "price": 110,
+      "image": "angular.jpg",
+      "count": 0
+   },
+   {
+      "id": 3,
+      "name": "Learning Express",
+      "price": 120,
+      "image": "express.jpg",
+      "count": 0
+   },
+   {
+      "id": 4,
+      "name": "Learning MongoDb",
+      "price": 130,
+      "image": "mongodb.png",
+      "count": 0
+   },
+   {
+      "id": 5,
+      "name": "Learning ReactJs",
+      "price": 140,
+      "image": "react-js.jpg",
+      "count": 0
+   },
+   {
+      "id": 6,
+      "name": "Learning React Native",
+      "price": 150,
+      "image": "react.png",
+      "count": 0
+   }
+]

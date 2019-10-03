@@ -1,0 +1,18 @@
+// Cart page content style
+ion-content {
+
+   // Cart icon style
+   .ic-cart {
+      font-size: 4.5em;
+   }
+
+   .empty-cart {
+      margin-top: 10%;
+   }
+
+   // Cart page content button style
+   ion-button {
+      width: 100%;
+      --box-shadow: none;
+   }
+}
