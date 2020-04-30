@@ -1,47 +1,27 @@
-// Home page header style
-ion-header {
+#container {
+  text-align: center;
 
-   // Header cart button style
-   .btn-cart {
-      background: none;
-
-      .ic-cart {
-         font-size: 1.7em;
-      }
-   }
-
-   // Cart button badge style
-   .badge {
-      margin-bottom: 10px;
-      padding: 0;
-      --color: #3880ff;
-      --background: none;
-   }
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-// Home page content style
-ion-content {
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
 
-   // Product cart style
-   .product-card {
+#container p {
+  font-size: 16px;
+  line-height: 22px;
 
-      // Product card title style
-      .card-title {
-         font-size: 16px;
-         text-overflow: ellipsis;
-         overflow: hidden;
-         white-space: nowrap;
-      }
+  color: #8c8c8c;
 
-      // Product card add button style
-      .btn-add-to-cart {
-         text-transform: capitalize;
-      }
+  margin: 0;
+}
 
-      // button style
-      ion-button {
-         width: 98%;
-      }
-   }
-
+#container a {
+  text-decoration: none;
 }

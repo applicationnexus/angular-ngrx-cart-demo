@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import {
-  GetItems,
-  AddToCart,
-  RemoveFromCart,
-  IncrementProductCount,
-  DecrementProductCount,
-} from '../store/actions';
+import { GetItems, AddToCart, RemoveFromCart, IncrementProductCount, DecrementProductCount } from '../store/actions';
 import { ToastService } from '../services/toast.service';
 import { Product } from '../model/product';
 import { AlertController } from '@ionic/angular';
-import { Events } from '@ionic/angular';
-import { State } from '../model/state';
-
+import { EventsService } from '../services/events.service';
+import { State, selectProducts } from '../model/state';
+import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -28,17 +22,14 @@ export class HomePage implements OnInit {
    */
   cartLength: number;
 
-  constructor(
-    private store: Store<State>,
-    private toastService: ToastService,
-    private alertController: AlertController,
-    private events: Events
-  ) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private store: Store<{ state: State }>, private toastService: ToastService, private alertController: AlertController, private eventsService: EventsService) {
     this.getProducts();
     /**
      * Subscribing the event to update cart count dynamically
      */
-    this.events.subscribe('cart', () => {
+    this.eventsService.formRefreshSource$.subscribe((data) => {
+      console.log('HomePage -> constructor -> data', data);
       this.getCartDataCount();
     });
   }
@@ -58,9 +49,16 @@ export class HomePage implements OnInit {
    * @returns void
    */
   getProducts(): void {
-    this.store.pipe(select('shop')).subscribe(data => {
-      this.products = data.items;
-    });
+    // this.store.pipe()
+    this.store
+      .pipe(
+        select('shop'),
+        filter((val) => val !== undefined)
+      )
+      .subscribe((data) => {
+        console.log('HomePage -> getProducts -> data', data);
+        // this.products = data['items'];
+      });
   }
 
   /**
@@ -68,9 +66,9 @@ export class HomePage implements OnInit {
    * @returns void
    */
   getCartDataCount(): void {
-    this.store.pipe(select('shop')).subscribe(data => {
-      this.cartLength = data.cart.length;
-    });
+    // this.store.pipe(select('shop')).subscribe((data) => {
+    //   this.cartLength = data.cart.length;
+    // });
   }
 
   /**
@@ -91,7 +89,7 @@ export class HomePage implements OnInit {
      * Dispatch the AddToCart action to add the product in the cart
      */
     this.store.dispatch(AddToCart({ payload: item }));
-    this.events.publish('cart');
+    this.eventsService.publishRefresh();
     this.toastService.presentToast('Product added to cart.');
   }
 
@@ -105,7 +103,7 @@ export class HomePage implements OnInit {
      * Dispatching the RemoveFromCart action to remove the product from the cart
      */
     this.store.dispatch(RemoveFromCart({ payload: item }));
-    this.events.publish('cart');
+    this.eventsService.publishRefresh();
     this.toastService.presentToast('Product removed from cart.');
   }
 
