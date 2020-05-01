@@ -52,7 +52,7 @@ export class HomePage implements OnInit {
     // this.store.pipe()
     this.store
       .pipe(
-        select('shop'),
+        select(selectProducts),
         filter((val) => val !== undefined)
       )
       .subscribe((data) => {
